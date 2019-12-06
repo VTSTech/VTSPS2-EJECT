@@ -1,8 +1,12 @@
-<img src="https://i.gyazo.com/aa1cadd9c243d3b16d6cbd57d5211f7c.png">
+<img src="https://i.gyazo.com/95792a6784bb4e6a3d2083306cbd7301.png">
 
 # PS2Eject
  A simple homebrew to eject the disc tray of a PS2
- 
+
+ v0.3 12/6/2019 5:33:45 PM
+ Now waits for button press to exit
+ Otherwise exits in 10s if no controller present/ready 
+
  v0.2 11/29/2019 3:09:20 PM
  Code optimizations
 
