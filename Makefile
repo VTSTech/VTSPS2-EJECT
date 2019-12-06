@@ -1,6 +1,6 @@
 EE_BIN = eject.elf
-EE_OBJS = eject.o
-EE_LIBS = -ldebug -lc -lcdvd
+EE_OBJS = eject.o pad.o
+EE_LIBS = -ldebug -lc -lcdvd -lpad
 
 all: $(EE_BIN)
 
