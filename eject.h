@@ -1,5 +1,15 @@
+#include <debug.h>
+#include <unistd.h>
+#include <libcdvd.h>
+#include <libpad.h>
+#include <time.h>
+#include <loadfile.h>
 #include <tamtypes.h>
 #include <libpad.h>
+#include <sbv_patches.h>
+#include <sifrpc.h>
+#include <iopcontrol.h>
+#include <iopheap.h>
 
 //** pad.c and pad related functions from wLaunchElf 8d4a0c2
 
