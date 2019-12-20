@@ -6,6 +6,7 @@
  v0.4 12/20/2019 1:00:17 PM
  Can now select multiple commands
  Sends sceCdTrayReq(0) and exits in 10s if no controller present/ready
+ Makefile improvements
  
  v0.3 12/6/2019 5:33:45 PM
  Now waits for button press to exit
