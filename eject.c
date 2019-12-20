@@ -1,6 +1,16 @@
 // A simple homebrew to eject the disc tray of a PS2
 // PS2Eject v0.4 Written by VTSTech (veritas@vts-tech.org)
 
+// v0.5 12/20/2019 1:44:27 PM
+// Added 'Press SEL for DriveState()'
+// Added SCECdStatRead and SCECdStatSeek
+// detection to DriveState()
+
+// v0.4 12/20/2019 1:00:17 PM
+// Can now select multiple commands
+// Sends sceCdTrayReq(0) and exits in 10s if no controller present/ready
+// Makefile improvements
+
 // v0.3 12/6/2019 5:33:45 PM
 // Now waits for button press to exit
 // Otherwise exits in 10s if no controller present/ready
@@ -54,7 +64,7 @@ void InitPS2()
 	//cdInitAdd();
 	sleep(1);
 }
-int DriveState()
+void DriveState()
 {
   int CdStatus;
   sleep(1);
@@ -63,36 +73,44 @@ int DriveState()
   	scr_printf("* sceCdvdDriveState: (00) SCECdStatStop \n");
   } else if (CdStatus == 1) {
   		scr_printf("* sceCdvdDriveState: (01) SCECdStatShellOpen \n");
+  } else if (CdStatus == 6) {
+  		scr_printf("* sceCdvdDriveState: (06) SCECdStatRead \n");
   } else if (CdStatus == 10) {
   		scr_printf("* sceCdvdDriveState: (10) SCECdStatSpin \n");
+  } else if (CdStatus == 12) {
+  		scr_printf("* sceCdvdDriveState: (12) SCECdStatSeek \n");
   } else {
   		scr_printf("* sceCdvdDriveState: (%d) Unknown \n",CdStatus);
   }
-  return 0;
+}
+void menu(){
+	scr_printf(" \n* Press  X for OPEN/EJECT ... \n");
+	scr_printf(" \n* Press  O for CLOSE/INSERT ... \n");
+	scr_printf(" \n* Press SEL for DriveState() \n");
+	scr_printf(" \n* Press START to exit \n \n");
 }
 
+void banner(){
+	scr_printf("PS2Eject v0.5 by VTSTech (12.20.2019) \n");
+	scr_printf("===================www.vts-tech.org== \n \n");
+}
 int main()
 {
 	int TrayCheck;
+	int YCheck;
 	InitPS2();
 	setupPad();
 	WaitTime = Timer();
 	sleep(1);
 	int state = padGetState(0,0);
-	scr_printf("PS2Eject v0.4 by VTSTech (12.20.2019) \n");
-	scr_printf("===================www.vts-tech.org== \n \n");
-	
+	banner();
 	if (sceCdInit(SCECdINoD) == 1) {
 		scr_printf("* libcdvd initalized...\n\n");
 		}
 	DriveState();
 	//scr_printf("padGetState() %d", state);
 	if (state == 6) {
-		scr_printf(" \n* Press  X for sceCdTrayReq(0) ... \n");
-		scr_printf(" \n* Press  O for sceCdTrayReq(1) ... \n");
-		scr_printf(" \n* Press [] for sceCdTrayReq(2) ... \n");
-		scr_printf(" \n* Press /\\ for sceCdTrayReq(3) ... \n");
-		scr_printf(" \n* Press START to exit \n \n");
+		menu();
 		while(1){
 			state = readpad();
 			//SEL = 1
@@ -111,36 +129,30 @@ int main()
 			// O  = 8192
 			// X  = 16384
 			//[ ] = 32768	
+			YCheck = scr_getY();
+			if (YCheck >=25) {
+				scr_clear();
+				banner();
+				menu();
+			}
 			if (new_pad == 16384) {
 				if (sceCdTrayReq(0,&TrayCheck) == 1) {
 					scr_printf("* X  sceCdTrayReq(0,SCECdTrayCheck): %d \n",TrayCheck);
 					} else {
-						scr_printf("! sceCdTrayReq() failed");
-					}
-					DriveState();
-					} else if (new_pad == 8192) {
-						if (sceCdTrayReq(1,&TrayCheck) == 1) {
-							scr_printf("* O  sceCdTrayReq(1,SCECdTrayCheck): %d \n",TrayCheck);
+						scr_printf("! sceCdTrayReq() failed \n");
+				}
+				DriveState();
+			} else if (new_pad == 8192) {
+				if (sceCdTrayReq(1,&TrayCheck) == 1) {
+					scr_printf("* O  sceCdTrayReq(1,SCECdTrayCheck): %d \n",TrayCheck);
 					} else {
-						scr_printf("! sceCdTrayReq() failed");
-					}
+						scr_printf("! sceCdTrayReq() failed \n");
+				}
+				DriveState();
+			} else if (new_pad == 8) {
+					return 0;
+			} else if (new_pad == 1) {
 					DriveState();
-					} else if (new_pad == 32768) {
-						if (sceCdTrayReq(2,&TrayCheck) == 1) {
-							scr_printf("* [] sceCdTrayReq(2,SCECdTrayCheck): %d \n",TrayCheck);
-					} else {
-						scr_printf("! sceCdTrayReq() failed");
-					}
-					DriveState();
-					} else if (new_pad == 4096) {
-						if (sceCdTrayReq(3,&TrayCheck) == 1) {
-							scr_printf("* /\\ sceCdTrayReq(3,SCECdTrayCheck): %d \n",TrayCheck);
-					} else {
-						scr_printf("! sceCdTrayReq() failed");
-					}
-					DriveState();
-					} else if (new_pad == 8) {
-						return 0;
 			}
 		}
 	} else {

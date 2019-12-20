@@ -1,7 +1,14 @@
-<img src="https://i.gyazo.com/b0daa39d7cebbb593ac8be7571540538.png">
+<img src="https://i.gyazo.com/d1a4967c824f22cdc84329edbffed363.png">
 
 # PS2Eject
  A simple homebrew to eject the disc tray of a PS2
+
+ v0.5 12/20/2019 1:44:27 PM
+ Added 'Press SEL for DriveState()'
+ Added SCECdStatRead and SCECdStatSeek detection to DriveState()
+ Removed sceCdTrayReq(2) & sceCdTrayReq(3)
+ More specific menu, Eject/Insert specified.
+ Now clears the screen instead of overwriting.
 
  v0.4 12/20/2019 1:00:17 PM
  Can now select multiple commands
