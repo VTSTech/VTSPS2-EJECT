@@ -86,12 +86,6 @@ int main()
 		scr_printf("* libcdvd initalized...\n\n");
 		}
 	DriveState();
-	if (sceCdTrayReq(2,&TrayCheck) == 1) {
-		scr_printf("* sceCdTrayReq(2,SCECdTrayCheck): %d \n",TrayCheck);
-		} else {
-			scr_printf("! sceCdTrayReq() failed");
-		}
-	DriveState();
 	//scr_printf("padGetState() %d", state);
 	if (state == 6) {
 		scr_printf(" \n* Press  X for sceCdTrayReq(0) ... \n");
