@@ -1,7 +1,11 @@
-<img src="https://i.gyazo.com/d1a4967c824f22cdc84329edbffed363.png">
+<img src="https://i.gyazo.com/8d2a8b38568fe3e37976ec331b94c03e.png">
 
 # PS2Eject
  A simple homebrew to eject the disc tray of a PS2
+
+ v0.6 12/20/2019 11:59:06 PM
+ Swapped O for /\
+ Removed 1s delay on DriveState()
 
  v0.5 12/20/2019 1:44:27 PM
  Added 'Press SEL for DriveState()'
