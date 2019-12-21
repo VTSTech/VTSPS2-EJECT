@@ -1,10 +1,16 @@
 // A simple homebrew to eject the disc tray of a PS2
-// PS2Eject v0.4 Written by VTSTech (veritas@vts-tech.org)
+// PS2Eject Written by VTSTech (veritas@vts-tech.org)
+
+// v0.6 12/20/2019 11:59:06 PM
+// Swapped O for /\
+// Removed 1s delay on DriveState()
 
 // v0.5 12/20/2019 1:44:27 PM
 // Added 'Press SEL for DriveState()'
-// Added SCECdStatRead and SCECdStatSeek
-// detection to DriveState()
+// Added SCECdStatRead and SCECdStatSeek detection to DriveState()
+// Removed sceCdTrayReq(2) & sceCdTrayReq(3)
+// More specific menu, Eject/Insert specified.
+// Now clears the screen instead of overwriting.
 
 // v0.4 12/20/2019 1:00:17 PM
 // Can now select multiple commands
@@ -67,7 +73,6 @@ void InitPS2()
 void DriveState()
 {
   int CdStatus;
-  sleep(1);
   CdStatus = sceCdStatus();
   if (CdStatus == 0) {
   	scr_printf("* sceCdvdDriveState: (00) SCECdStatStop \n");
@@ -85,13 +90,13 @@ void DriveState()
 }
 void menu(){
 	scr_printf(" \n* Press  X for OPEN/EJECT ... \n");
-	scr_printf(" \n* Press  O for CLOSE/INSERT ... \n");
+	scr_printf(" \n* Press /\\ for CLOSE/INSERT ... \n");
 	scr_printf(" \n* Press SEL for DriveState() \n");
 	scr_printf(" \n* Press START to exit \n \n");
 }
 
 void banner(){
-	scr_printf("PS2Eject v0.5 by VTSTech (12.20.2019) \n");
+	scr_printf("PS2Eject v0.6 by VTSTech (12.20.2019) \n");
 	scr_printf("===================www.vts-tech.org== \n \n");
 }
 int main()
@@ -142,9 +147,9 @@ int main()
 						scr_printf("! sceCdTrayReq() failed \n");
 				}
 				DriveState();
-			} else if (new_pad == 8192) {
+			} else if (new_pad == 4096) {
 				if (sceCdTrayReq(1,&TrayCheck) == 1) {
-					scr_printf("* O  sceCdTrayReq(1,SCECdTrayCheck): %d \n",TrayCheck);
+					scr_printf("* /\\ sceCdTrayReq(1,SCECdTrayCheck): %d \n",TrayCheck);
 					} else {
 						scr_printf("! sceCdTrayReq() failed \n");
 				}

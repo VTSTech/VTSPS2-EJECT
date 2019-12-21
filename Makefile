@@ -1,4 +1,4 @@
-VERSION = 0.4
+VERSION = 0.6
 
 EE_BIN = PS2Eject.ELF
 EE_BIN_PACKED = PS2Eject-packed.ELF
