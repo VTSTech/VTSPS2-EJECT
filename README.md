@@ -2,7 +2,7 @@
 
 # PS2Eject
  A simple homebrew to eject the disc tray of a PS2
-
+<pre>
  v0.6 12/20/2019 11:59:06 PM
  Swapped O for /\
  Removed 1s delay on DriveState()
@@ -28,3 +28,6 @@
 
  v0.1 11/29/2019 11:44:31 AM
  First release
+</pre>
+
+PSX-Place https://www.psx-place.com/resources/ps2eject.882
