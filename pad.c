@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 // File name:   pad.c
 //---------------------------------------------------------------------------
-#include "eject.h"
+#include "VTSPS2-EJECT.h"
 
 static char padBuf_t[2][256] __attribute__((aligned(64)));
 struct padButtonStatus buttons_t[2];

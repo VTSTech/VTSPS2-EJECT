@@ -1,5 +1,5 @@
 // A simple homebrew to eject the disc tray of a PS2
-// PS2Eject Written by VTSTech (veritas@vts-tech.org)
+// VTSPS2-EJECT Written by VTSTech (veritas@vts-tech.org)
 
 // v0.6 12/20/2019 11:59:06 PM
 // Swapped O for /\
@@ -27,7 +27,7 @@
 // v0.1 11/29/2019 11:44:31 AM
 // First release
 
-#include "eject.h"
+#include "VTSPS2-EJECT.h"
 
 extern u64 WaitTime;
 extern u64 CurrTime;
@@ -96,8 +96,8 @@ void menu(){
 }
 
 void banner(){
-	scr_printf("PS2Eject v0.6 by VTSTech (12.20.2019) \n");
-	scr_printf("===================www.vts-tech.org== \n \n");
+	scr_printf("VTSPS2-EJECT v0.6 by VTSTech (12.20.2019) \n");
+	scr_printf("=======================www.vts-tech.org== \n \n");
 }
 int main()
 {

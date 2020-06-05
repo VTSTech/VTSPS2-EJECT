@@ -1,4 +1,4 @@
-<img src="https://i.gyazo.com/8d2a8b38568fe3e37976ec331b94c03e.png">
+<img src="https://i.gyazo.com/4f724f57e9d7c46df54a8f1472945995.png">
 
 # PS2Eject
  A simple homebrew to eject the disc tray of a PS2

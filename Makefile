@@ -1,14 +1,15 @@
 VERSION = 0.6
+NAME = VTSPS2-EJECT
 
-EE_BIN = PS2Eject.ELF
-EE_BIN_PACKED = PS2Eject-packed.ELF
-EE_BIN_STRIPPED = PS2Eject-stripped.ELF
-EE_OBJS = eject.o pad.o
+EE_BIN = $(NAME).ELF
+EE_BIN_PACKED = $(NAME)-packed.ELF
+EE_BIN_STRIPPED = $(NAME)-stripped.ELF
+EE_OBJS = $(NAME).o pad.o
 EE_LIBS = -lc -lcdvd -lpatches -ldebug -lpad
 
 all:
 	@echo "======================================="
-	@echo "=== Building PS2Eject v$(VERSION) ==="
+	@echo "=== Building $(NAME) v$(VERSION) ==="
 	@echo "======================================="
 	$(MAKE) $(EE_BIN_PACKED)
 
